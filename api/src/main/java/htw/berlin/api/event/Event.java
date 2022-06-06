@@ -10,6 +10,7 @@ public class Event<K, T> {
 
   public enum Type {
     CREATE,
+    UPDATE,
     DELETE
   }
 

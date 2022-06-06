@@ -6,33 +6,34 @@ import java.util.Collection;
 public class Chart {
     private int chartId;
     private String studentId;
-    private String studentEmail;
     private ChartLabel chartLabel;
     private ChartType chartType;
     private Collection<Transcript> transcripts;
     private ZonedDateTime createdAt;
     private ZonedDateTime updatedAt;
+    private String serviceAddress;
+
 
     public Chart() {
         chartId = 0;
         studentId = null;
-        studentEmail = null;
         chartLabel = null;
         chartType = null;
         transcripts = null;
         createdAt = null;
         updatedAt = null;
+        serviceAddress = null;
     }
 
-    public Chart(int chartId, String studentId, String studentEmail, ChartLabel chartLabel,ChartType chartType, Collection<Transcript> transcripts, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
+    public Chart(int chartId, String studentId, ChartLabel chartLabel,ChartType chartType, Collection<Transcript> transcripts, String serviceAddress, ZonedDateTime createdAt, ZonedDateTime updatedAt) {
         this.chartId = chartId;
         this.studentId = studentId;
-        this.studentEmail = studentEmail;
         this.chartLabel = chartLabel;
         this.chartType = chartType;
         this.transcripts = transcripts;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.serviceAddress = serviceAddress;
     }
 
     public int getChartId() {
@@ -49,14 +50,6 @@ public class Chart {
 
     public void setStudentId(String studentId) {
         this.studentId = studentId;
-    }
-
-    public String getStudentEmail() {
-        return studentEmail;
-    }
-
-    public void setStudentEmail(String studentEmail) {
-        this.studentEmail = studentEmail;
     }
 
     public ChartLabel getChartLabel() {
@@ -97,5 +90,13 @@ public class Chart {
 
     public void setUpdatedAt(ZonedDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getServiceAddress() {
+        return serviceAddress;
+    }
+
+    public void setServiceAddress(String serviceAddress) {
+        this.serviceAddress = serviceAddress;
     }
 }
