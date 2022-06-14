@@ -1,4 +1,4 @@
-package se.magnus.util.http;
+package htw.berlin.util.http;
 
 import java.time.ZonedDateTime;
 import org.springframework.http.HttpStatus;

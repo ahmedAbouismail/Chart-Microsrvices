@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'htw.berlin.microservices.core.chart'
+group = 'htw.berlin.microservices.core.data'
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -16,6 +16,7 @@ ext {
 repositories {
 	mavenCentral()
 }
+
 jar {
 	enabled = false
 }
@@ -27,7 +28,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 	implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
-	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.retry:spring-retry'
@@ -52,6 +52,6 @@ dependencyManagement {
 	}
 }
 
-test{
+test {
 	useJUnitPlatform()
 }

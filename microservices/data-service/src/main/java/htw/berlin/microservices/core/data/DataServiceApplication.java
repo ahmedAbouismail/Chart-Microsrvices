@@ -1,6 +1,6 @@
-package htw.berlin.microservices.core.chart;
+package htw.berlin.microservices.core.data;
 
-import htw.berlin.microservices.core.chart.persistence.ChartEntity;
+import htw.berlin.microservices.core.data.persistence.DataEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,12 @@ import org.springframework.data.mongodb.core.mapping.MongoPersistentProperty;
 
 @SpringBootApplication
 @ComponentScan("htw.berlin")
-public class ChartServiceApplication {
+public class DataServiceApplication {
 
-	private static final Logger LOG = LoggerFactory.getLogger(ChartServiceApplication.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DataServiceApplication.class);
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext ctx = SpringApplication.run(ChartServiceApplication.class, args);
+		ConfigurableApplicationContext ctx = SpringApplication.run(DataServiceApplication.class, args);
 
 		String mongodDbHost = ctx.getEnvironment().getProperty("spring.data.mongodb.host");
 		String mongodDbPort = ctx.getEnvironment().getProperty("spring.data.mongodb.port");
@@ -41,8 +41,8 @@ public class ChartServiceApplication {
 		MappingContext<? extends MongoPersistentEntity<?>, MongoPersistentProperty> mappingContext = mongoTemplate.getConverter().getMappingContext();
 		IndexResolver resolver = new MongoPersistentEntityIndexResolver(mappingContext);
 
-		ReactiveIndexOperations indexOps = mongoTemplate.indexOps(ChartEntity.class);
-		resolver.resolveIndexFor(ChartEntity.class).forEach(e -> indexOps.ensureIndex(e).block());
+		ReactiveIndexOperations indexOps = mongoTemplate.indexOps(DataEntity.class);
+		resolver.resolveIndexFor(DataEntity.class).forEach(e -> indexOps.ensureIndex(e).block());
 	}
 
 }

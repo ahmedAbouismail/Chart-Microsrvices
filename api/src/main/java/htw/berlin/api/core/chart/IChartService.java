@@ -12,10 +12,7 @@ public interface IChartService {
             value = "/chart",
             produces = "application/json"
     )
-    Mono<Chart> getChart(@RequestParam(value = "chartId", required = true) int chartId,
-                         @RequestParam(value = "studentId", required = false) String studentId,
-                         @RequestParam(value = "chartType", required = false) String chartType,
-                         @RequestParam(value = "chartLabel", required = false) String chartLabel) ;
+    Mono<Chart> getChart(@RequestParam(value = "chartId", required = true) int chartId) ;
 
     Mono<Chart> updateChart(Chart body);
 

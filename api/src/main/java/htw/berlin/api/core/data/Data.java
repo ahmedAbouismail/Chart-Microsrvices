@@ -1,33 +1,32 @@
-package htw.berlin.api.core.chart;
+package htw.berlin.api.core.data;
 
 import java.time.ZonedDateTime;
 import java.util.Collection;
 
-public class Chart {
+public class Data {
     private int chartId;
+    private int dataId;
     private String studentId;
-    private ChartLabel chartLabel;
-    private ChartType chartType;
+    private Collection<Transcript> transcripts;
     private ZonedDateTime createdAt;
     private ZonedDateTime lastUpdate;
     private String serviceAddress;
 
-
-    public Chart() {
+    public Data() {
         chartId = 0;
+        dataId = 0;
         studentId = null;
-        chartLabel = null;
-        chartType = null;
+        transcripts = null;
         createdAt = null;
         lastUpdate = null;
         serviceAddress = null;
     }
 
-    public Chart(int chartId, String studentId, ChartLabel chartLabel,ChartType chartType, String serviceAddress, ZonedDateTime createdAt, ZonedDateTime lastUpdate) {
+    public Data(int chartId, int dataId, String studentId, Collection<Transcript> transcripts, ZonedDateTime createdAt, ZonedDateTime lastUpdate,String serviceAddress) {
         this.chartId = chartId;
+        this.dataId = dataId;
         this.studentId = studentId;
-        this.chartLabel = chartLabel;
-        this.chartType = chartType;
+        this.transcripts = transcripts;
         this.createdAt = createdAt;
         this.lastUpdate = lastUpdate;
         this.serviceAddress = serviceAddress;
@@ -41,6 +40,14 @@ public class Chart {
         this.chartId = chartId;
     }
 
+    public int getDataId() {
+        return dataId;
+    }
+
+    public void setDataId(int dataId) {
+        this.dataId = dataId;
+    }
+
     public String getStudentId() {
         return studentId;
     }
@@ -49,20 +56,12 @@ public class Chart {
         this.studentId = studentId;
     }
 
-    public ChartLabel getChartLabel() {
-        return chartLabel;
+    public Collection<Transcript> getTranscripts() {
+        return transcripts;
     }
 
-    public void setChartLabel(ChartLabel chartLabel) {
-        this.chartLabel = chartLabel;
-    }
-
-    public ChartType getChartType() {
-        return chartType;
-    }
-
-    public void setChartType(ChartType chartType) {
-        this.chartType = chartType;
+    public void setTranscripts(Collection<Transcript> transcripts) {
+        this.transcripts = transcripts;
     }
 
     public ZonedDateTime getCreatedAt() {
@@ -88,4 +87,6 @@ public class Chart {
     public void setServiceAddress(String serviceAddress) {
         this.serviceAddress = serviceAddress;
     }
+
+
 }
