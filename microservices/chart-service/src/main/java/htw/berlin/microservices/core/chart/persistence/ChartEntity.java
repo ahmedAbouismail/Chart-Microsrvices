@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.ZonedDateTime;
-import java.util.Collection;
 
 @Document(collection = "charts")
 public class ChartEntity {
@@ -22,12 +21,11 @@ public class ChartEntity {
     @Indexed(unique = true)
     private int chartId;
 
-    @Indexed(unique = true)
     private String studentId;
 
-    private ChartType chartTypeObj;
+    private ChartTypeObj chartTypeObj;
 
-    private ChartLabel chartLabelObj;
+    private ChartLabelObj chartLabelObj;
 
     private ZonedDateTime createdAt;
 
@@ -36,7 +34,7 @@ public class ChartEntity {
     public ChartEntity() {
     }
 
-    public ChartEntity(int chartId, String studentId, ChartType chartTypeObj, ChartLabel chartLabelObj, ZonedDateTime createdAt, ZonedDateTime lastUpdate) {
+    public ChartEntity(int chartId, String studentId, ChartTypeObj chartTypeObj, ChartLabelObj chartLabelObj, ZonedDateTime createdAt, ZonedDateTime lastUpdate) {
         this.chartId = chartId;
         this.studentId = studentId;
         this.chartTypeObj = chartTypeObj;
@@ -77,19 +75,19 @@ public class ChartEntity {
         this.studentId = studentId;
     }
 
-    public ChartType getChartType() {
+    public ChartTypeObj getChartType() {
         return chartTypeObj;
     }
 
-    public void setChartType(ChartType chartTypeObj) {
+    public void setChartType(ChartTypeObj chartTypeObj) {
         this.chartTypeObj = chartTypeObj;
     }
 
-    public ChartLabel getChartLabel() {
+    public ChartLabelObj getChartLabel() {
         return chartLabelObj;
     }
 
-    public void setChartLabel(ChartLabel chartLabelObj) {
+    public void setChartLabel(ChartLabelObj chartLabelObj) {
         this.chartLabelObj = chartLabelObj;
     }
 

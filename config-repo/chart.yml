@@ -1,18 +1,18 @@
-server.port: 7002
+server.port: 7001
 server.error.include-message: always
 
 spring.data.mongodb:
   host: localhost
   port: 27017
-  database: data-db
+  database: chart-db
 
 spring.cloud.function.definition: messageProcessor
 
 spring.cloud.stream:
   default.contentType: application/json
   bindings.messageProcessor-in-0:
-    destination: data
-    group: dataGroup
+    destination: charts
+    group: chartsGroup
 
 spring.cloud.stream.bindings.messageProcessor-in-0.consumer:
   maxAttempts: 3

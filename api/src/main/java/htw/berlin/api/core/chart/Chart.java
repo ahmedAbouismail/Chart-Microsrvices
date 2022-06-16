@@ -23,7 +23,7 @@ public class Chart {
         serviceAddress = null;
     }
 
-    public Chart(int chartId, String studentId, ChartLabel chartLabel,ChartType chartType, String serviceAddress, ZonedDateTime createdAt, ZonedDateTime lastUpdate) {
+    public Chart(int chartId, String studentId, ChartType chartType, ChartLabel chartLabel, ZonedDateTime createdAt, ZonedDateTime lastUpdate, String serviceAddress) {
         this.chartId = chartId;
         this.studentId = studentId;
         this.chartLabel = chartLabel;

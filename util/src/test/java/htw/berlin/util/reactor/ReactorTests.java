@@ -1,4 +1,4 @@
-package se.magnus.util.reactor;
+package htw.berlin.util.reactor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

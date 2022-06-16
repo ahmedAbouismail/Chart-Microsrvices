@@ -76,11 +76,11 @@ public class ChartServiceImpl implements IChartService {
 
     private Chart checkAndUpdate(ChartEntity e, Chart body) {
         //Only update if there is a difference
-        if (!checkEquals(e, body)){
-            e.setChartLabel(body.getChartLabel());
-            e.setChartType(body.getChartType());
-            repository.save(e);
-        }
+//        if (!checkEquals(e, body)){
+//            e.setChartLabel(body.getChartLabel());
+//            e.setChartType(body.getChartType());
+//            repository.save(e);
+//        }
         return mapper.entityToApi(e);
     }
 

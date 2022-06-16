@@ -18,6 +18,7 @@ import org.springframework.data.mongodb.core.index.ReactiveIndexOperations;
 import org.springframework.data.mongodb.core.mapping.MongoPersistentEntity;
 import org.springframework.data.mongodb.core.mapping.MongoPersistentProperty;
 
+
 @SpringBootApplication
 @ComponentScan("htw.berlin")
 public class ChartServiceApplication {

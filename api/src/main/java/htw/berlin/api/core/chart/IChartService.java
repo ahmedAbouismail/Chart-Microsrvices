@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import reactor.core.publisher.Mono;
 
 public interface IChartService {
-
     Mono<Chart> createChart(Chart body);
 
     @GetMapping(
