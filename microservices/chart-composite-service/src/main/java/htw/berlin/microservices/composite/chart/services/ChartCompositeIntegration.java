@@ -92,7 +92,7 @@ public class ChartCompositeIntegration implements IChartService, IDataService {
 
     @Override
     public Mono<Void> deleteChart(int chartId) {
-        return Mono.fromRunnable(() -> sendMessage("charts-ou-0", new Event(DELETE, chartId, null)))
+        return Mono.fromRunnable(() -> sendMessage("charts-out-0", new Event(DELETE, chartId, null)))
                 .subscribeOn(publishEventScheduler).then();
     }
 
@@ -125,7 +125,7 @@ public class ChartCompositeIntegration implements IChartService, IDataService {
 
     @Override
     public Mono<Void> deleteData(int chartId) {
-        return Mono.fromRunnable(() -> sendMessage("data-ou-0", new Event(DELETE, chartId, null)))
+        return Mono.fromRunnable(() -> sendMessage("data-out-0", new Event(DELETE, chartId, null)))
                 .subscribeOn(publishEventScheduler).then();
     }
 
