@@ -5,8 +5,6 @@ import static htw.berlin.api.core.chart.ChartType.BAR;
 import static org.junit.jupiter.api.Assertions.*;
 
 import htw.berlin.api.core.chart.Chart;
-import htw.berlin.api.core.chart.ChartLabel;
-import htw.berlin.api.core.chart.ChartType;
 import htw.berlin.microservices.core.chart.persistence.ChartEntity;
 import htw.berlin.microservices.core.chart.services.IChartMapper;
 import org.junit.jupiter.api.Test;
@@ -26,8 +24,8 @@ public class MapperTests {
 
         assertEquals(api.getChartId(), entity.getChartId());
         assertEquals(api.getStudentId(), entity.getStudentId());
-        assertEquals(api.getChartLabel(), entity.getChartLabel());
-        assertEquals(api.getChartType(), entity.getChartType());
+        assertEquals(api.getChartLabel().toString(), entity.getChartLabelObj().toString());
+        assertEquals(api.getChartType().toString(), entity.getChartTypeObj().toString());
 
         Chart api2 = mapper.entityToApi(entity);
 

@@ -26,7 +26,7 @@ public interface IChartCompositeService {
             value = "/chart-composite",
             consumes = "application/json"
     )
-    Mono<Void> createdChart(@RequestBody ChartAggregate body);
+    Mono<Void> createChart(@RequestBody ChartAggregate body);
 
     @Operation(
             summary = "${api.chart-composite.get-composite-chart.description}",

@@ -24,8 +24,6 @@ spring.cloud.stream.rabbit.bindings.messageProcessor-in-0.consumer:
   autoBindDlq: true
   republishToDlq: true
 
-spring.cloud.stream.kafka.bindings.messageProcessor-in-0.consumer:
-  enableDlq: true
 
 logging:
   level:

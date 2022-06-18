@@ -19,6 +19,10 @@ import org.springframework.data.mongodb.core.mapping.MongoPersistentEntity;
 import org.springframework.data.mongodb.core.mapping.MongoPersistentProperty;
 
 
+
+
+
+
 @SpringBootApplication
 @ComponentScan("htw.berlin")
 public class ChartServiceApplication {
@@ -45,5 +49,4 @@ public class ChartServiceApplication {
 		ReactiveIndexOperations indexOps = mongoTemplate.indexOps(ChartEntity.class);
 		resolver.resolveIndexFor(ChartEntity.class).forEach(e -> indexOps.ensureIndex(e).block());
 	}
-
 }

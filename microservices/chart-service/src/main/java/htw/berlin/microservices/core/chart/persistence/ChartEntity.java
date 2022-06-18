@@ -1,7 +1,5 @@
 package htw.berlin.microservices.core.chart.persistence;
 
-import htw.berlin.api.core.chart.ChartLabel;
-import htw.berlin.api.core.chart.ChartType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -75,19 +73,19 @@ public class ChartEntity {
         this.studentId = studentId;
     }
 
-    public ChartTypeObj getChartType() {
+    public ChartTypeObj getChartTypeObj() {
         return chartTypeObj;
     }
 
-    public void setChartType(ChartTypeObj chartTypeObj) {
+    public void setChartTypeObj(ChartTypeObj chartTypeObj) {
         this.chartTypeObj = chartTypeObj;
     }
 
-    public ChartLabelObj getChartLabel() {
+    public ChartLabelObj getChartLabelObj() {
         return chartLabelObj;
     }
 
-    public void setChartLabel(ChartLabelObj chartLabelObj) {
+    public void setChartLabelObj(ChartLabelObj chartLabelObj) {
         this.chartLabelObj = chartLabelObj;
     }
 

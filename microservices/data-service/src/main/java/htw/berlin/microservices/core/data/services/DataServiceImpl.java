@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import static java.util.logging.Level.FINE;
 
 @RestController
-public class DataServiceImpl implements IDataService {
+public class  DataServiceImpl implements IDataService {
     private static final Logger LOG = LoggerFactory.getLogger(DataServiceImpl.class);
 
     private final ServiceUtil serviceUtil;

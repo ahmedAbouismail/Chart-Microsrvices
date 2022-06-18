@@ -6,15 +6,18 @@ import htw.berlin.api.exceptions.InvalidInputException;
 import htw.berlin.api.exceptions.NotFoundException;
 import htw.berlin.microservices.core.chart.persistence.ChartEntity;
 import htw.berlin.microservices.core.chart.persistence.IChartRepository;
+import htw.berlin.util.http.ServiceUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import htw.berlin.util.http.ServiceUtil;
 
 import static java.util.logging.Level.FINE;
 
+@RestController
 public class ChartServiceImpl implements IChartService {
     private static final Logger LOG = LoggerFactory.getLogger(ChartServiceImpl.class);
 
@@ -85,8 +88,8 @@ public class ChartServiceImpl implements IChartService {
     }
 
     private boolean checkEquals(ChartEntity e, Chart body) {
-        return e.getChartLabel().toString() == body.getChartLabel().toString() &&
-                e.getChartType().toString() == body.getChartLabel().toString();
+        return e.getChartLabelObj().toString() == body.getChartLabel().toString() &&
+                e.getChartTypeObj().toString() == body.getChartLabel().toString();
     }
 
     @Override

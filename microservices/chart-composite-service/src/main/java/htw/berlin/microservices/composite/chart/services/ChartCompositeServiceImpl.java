@@ -7,18 +7,6 @@ import java.net.URL;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.google.common.util.concurrent.ListenableScheduledFuture;
-import htw.berlin.api.composite.chart.ChartAggregate;
-import htw.berlin.api.composite.chart.DataSummery;
-import htw.berlin.api.composite.chart.IChartCompositeService;
-import htw.berlin.api.composite.chart.ServiceAddresses;
-import htw.berlin.api.core.chart.Chart;
-import htw.berlin.api.core.chart.ChartLabel;
-import htw.berlin.api.core.chart.ChartType;
-import htw.berlin.api.core.data.Data;
-import htw.berlin.util.http.ServiceUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +17,15 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+import htw.berlin.api.composite.chart.ChartAggregate;
+import htw.berlin.api.composite.chart.DataSummery;
+import htw.berlin.api.composite.chart.IChartCompositeService;
+import htw.berlin.api.composite.chart.ServiceAddresses;
+import htw.berlin.api.core.chart.Chart;
+import htw.berlin.api.core.chart.ChartLabel;
+import htw.berlin.api.core.chart.ChartType;
+import htw.berlin.api.core.data.Data;
+import htw.berlin.util.http.ServiceUtil;
 
 @RestController
 public class ChartCompositeServiceImpl implements IChartCompositeService {
@@ -48,7 +45,7 @@ public class ChartCompositeServiceImpl implements IChartCompositeService {
     }
 
     @Override
-    public Mono<Void> createdChart(ChartAggregate body) {
+    public Mono<Void> createChart(ChartAggregate body) {
 
         try {
             List<Mono> monoList = new ArrayList<>();

@@ -11,10 +11,6 @@ import htw.berlin.api.exceptions.InvalidInputException;
 import htw.berlin.api.exceptions.NotFoundException;
 import htw.berlin.util.http.HttpErrorInfo;
 import htw.berlin.util.http.ServiceUtil;
-import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
-import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import java.io.IOException;
 import java.net.URI;
 import org.slf4j.Logger;
@@ -28,7 +24,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.util.UriComponentsBuilder;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 
@@ -112,7 +107,7 @@ public class ChartCompositeIntegration implements IChartService, IDataService {
 
         return webClient.get().uri(url)
                 .retrieve().bodyToMono(Data.class).log(LOG.getName(), FINE)
-                .onErrorMap(WebClientResponseException.class, ex -> handleException(ex));
+                .onErrorResume(error -> Mono.empty());
     }
 
     @Override
