@@ -77,7 +77,6 @@ public class ChartCompositeIntegration implements IChartService, IDataService {
 
     @Override
     public Mono<Chart> updateChart(Chart body) {
-
         return Mono.fromCallable(() -> {
             sendMessage("charts-out-0", new Event(UPDATE, body.getChartId(), body));
             return body;

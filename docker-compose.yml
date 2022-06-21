@@ -63,6 +63,22 @@ services:
       timeout: 2s
       retries: 60
 
+  mysql:
+    image: mysql:5.7.32
+    mem_limit: 512m
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=user-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+    healthcheck:
+      test: "/usr/bin/mysql --user=user --password=pwd --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 60
+
   eureka:
     build: spring-cloud/eureka-server
     mem_limit: 512m
@@ -91,6 +107,10 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
       - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
+    depends_on:
+      mysql:
+        condition: service_healthy
+
     healthcheck:
       test: [ "CMD", "curl", "-fs", "http://localhost:9999/actuator/health" ]
       interval: 5s

@@ -2,24 +2,36 @@ package htw.berlin.springcloud.config;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+import htw.berlin.springcloud.services.AppAuthenticationProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
+//@EnableWebFluxSecurity
 @EnableWebSecurity
 public class DefaultSecurityConfig {
 
+
     private static final Logger LOG = LoggerFactory.getLogger(DefaultSecurityConfig.class);
+
+    @Autowired
+    private AppAuthenticationProvider appAuthenticationProvider;
+
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+//    SecurityWebFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequests -> authorizeRequests
                         .antMatchers("/actuator/**").permitAll()
@@ -29,14 +41,20 @@ public class DefaultSecurityConfig {
         return http.build();
     }
 
-    @Bean
-    UserDetailsService users() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("u")
-                .password("p")
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(user);
+    @Autowired
+    public void bindAuthenticationProvider(AuthenticationManagerBuilder authenticationManagerBuilder) {
+        authenticationManagerBuilder
+                .authenticationProvider(appAuthenticationProvider);
     }
+
+//    @Bean
+//    UserDetailsService users() {
+//        UserDetails user = User.withDefaultPasswordEncoder()
+//                .username("u")
+//                .password("p")
+//                .roles("USER")
+//                .build();
+//        return new InMemoryUserDetailsManager(user);
+//    }
 
 }
