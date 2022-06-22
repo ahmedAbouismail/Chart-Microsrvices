@@ -77,19 +77,19 @@ public class ChartServiceImpl implements IChartService {
                 .map(e-> setServiceAddress(e));
     }
 
-    private Chart checkAndUpdate(ChartEntity e, Chart body) {
-        //Only update if there is a difference
-//        if (!checkEquals(e, body)){
-//            e.setChartLabel(body.getChartLabel());
-//            e.setChartType(body.getChartType());
-//            repository.save(e);
-//        }
+    private Chart checkAndUpdate(ChartEntity e, Chart apiBody) {
+        ChartEntity chartEntity = mapper.apiToEntity(apiBody);
+        if (!checkEquals(e, chartEntity)){
+            e.setChartLabelObj(chartEntity.getChartLabelObj());
+            e.setChartTypeObj(chartEntity.getChartTypeObj());
+            repository.save(e);
+        }
         return mapper.entityToApi(e);
     }
 
-    private boolean checkEquals(ChartEntity e, Chart body) {
-        return e.getChartLabelObj().toString() == body.getChartLabel().toString() &&
-                e.getChartTypeObj().toString() == body.getChartLabel().toString();
+    private boolean checkEquals(ChartEntity e, ChartEntity body) {
+        return e.getChartLabelObj().toString().equals(body.getChartLabelObj().toString())
+            && e.getChartTypeObj().toString().equals(body.getChartTypeObj().toString());
     }
 
     @Override

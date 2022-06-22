@@ -43,6 +43,16 @@ public interface IChartCompositeService {
     Mono<ChartAggregate> getChart(@PathVariable int chartId);
 
 
+    @Operation(
+            summary = "${api.chart-composite.update-composite-chart.description}",
+            description = "${api.chart-composite.update-composite-chart.notes}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "400", description = "${api.responseCodes.badRequest.description}"),
+            @ApiResponse(responseCode = "422", description = "${api.responseCodes.unprocessableEntity.description}")
+    })
+    @PatchMapping(
+            value = "/chart-composite",
+            consumes = "application/json")
     Mono<ChartAggregate> updateChart(@RequestBody ChartAggregate body);
 
     @Operation(

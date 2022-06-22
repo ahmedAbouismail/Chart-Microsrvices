@@ -93,12 +93,14 @@ public class ChartCompositeServiceImpl implements IChartCompositeService {
         LOG.info("Will update composite chart info for chart.id={}", body.getChartId());
 
         Chart chart = new Chart(body.getChartId(), body.getStudentId(), body.getChartType(), body.getChartLabel(), body.getCreatedAt(), body.getLastUpdate(), null);
+        DataSummery datSum = body.getDataSummery();
+        Data data = new Data(body.getChartId(), datSum.getDataId(), datSum.getStudentId(), datSum.getTranscripts(), datSum.getCreatedAt(), datSum.getLastUpdate(), null);
         return Mono.zip(
                 values -> createChartAggregate(
                         (SecurityContext) values[0], (Chart) values[1], (Data) values[2], serviceUtil.getServiceAddress()),
                 getSecurityContextMono(),
                 integration.updateChart(chart),
-                integration.getData(body.getChartId()))
+                integration.updateData(data))
                 .doOnError(ex -> LOG.warn("updateCompositeChart failed; {}", ex.toString()))
                 .log(LOG.getName(), FINE);
     }

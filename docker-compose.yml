@@ -5,13 +5,17 @@ services:
     mem_limit: 512m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
       - CONFIG_SERVER_USR=${CONFIG_SERVER_USR}
       - CONFIG_SERVER_PWD=${CONFIG_SERVER_PWD}
+    ports:
+      - "5005:5005"
     depends_on:
       mongodb:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
+    command: java -Djava.security.egd=file:/dev/./urandom -jar /project/target/demo-0.0.1-SNAPSHOT.jar
 
   chart:
     build: microservices/chart-service

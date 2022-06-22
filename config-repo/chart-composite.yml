@@ -61,6 +61,11 @@ api:
         # Expected error responses
         1. If a chart with the same chartId as specified in the posted information already exists,
            an **422 - Unprocessable Entity** error with a "duplicate key" error message will be returned
+
+    update-composite-chart:
+      description: Updates a composite chart
+      notes:
+
     delete-composite-chart:
       description: Deletes a chart composite
       notes: |

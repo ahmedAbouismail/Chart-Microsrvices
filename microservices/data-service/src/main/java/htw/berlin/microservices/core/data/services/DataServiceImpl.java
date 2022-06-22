@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import static java.util.logging.Level.FINE;
@@ -115,27 +116,31 @@ public class  DataServiceImpl implements IDataService {
 
         LOG.info("Will update data with chart id: {}", body.getChartId());
 
-
         DataEntity newEntity = dataMapper.apiToEntity(body);
-        Mono<DataEntity> oldEntity = dataRepository.findByChartId(body.getChartId())
-                .onErrorMap(ex -> new NotFoundException("Can't update data with dataId: " + body.getDataId()))
-                .map(old -> {
-                    if (!old.equals(newEntity)){
-                        old.setTranscripts(newEntity.getTranscripts());
-                        old = calculateSemesterAverage(old);
-                    }else {
-                        LOG.info("updateData: the new entity equals the old entity");
-                    }
-                    return old;
-                });
 
-        dataRepository.save(oldEntity.block());
 
-        return dataRepository.findByChartId(body.getChartId())
+         Mono<DataEntity> updatedEntity = dataRepository.findByChartId(body.getChartId())
+        .switchIfEmpty(Mono.error(new NotFoundException("updateData: Can't find Data with data Id: " + body.getDataId())))
+        .map(foundEntity -> updateDataEntity(foundEntity, newEntity));
+
+        Mono<Data> updatedData = dataRepository.save(updatedEntity.block())
                 .log(LOG.getName(), FINE)
-                .map(e -> dataMapper.entityToApi(e))
-                .map(e -> setServiceAddress(e));
+                .switchIfEmpty(Mono.error(new NotFoundException("updateDate: Can't find Data with data Id: " + body.getDataId())))
+                .map(e -> dataMapper.entityToApi(e));
+
+        return updatedData;
+
     }
+
+
+    private DataEntity updateDataEntity(DataEntity foundEntity, DataEntity newEntity) {
+        if (foundEntity != null && newEntity != null){
+            foundEntity.setTranscripts(newEntity.getTranscripts());
+        }
+
+        return foundEntity;
+    }
+
 
     @Override
     public Mono<Void> deleteData(int chartId) {
@@ -148,6 +153,7 @@ public class  DataServiceImpl implements IDataService {
 
         return dataRepository.deleteAll(dataRepository.findByChartId(chartId));
     }
+
 
     private Data setServiceAddress(Data e) {
         e.setServiceAddress(serviceUtil.getServiceAddress());

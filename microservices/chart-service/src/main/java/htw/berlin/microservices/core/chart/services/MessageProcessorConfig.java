@@ -39,7 +39,7 @@ public class MessageProcessorConfig {
 
                 case UPDATE:
                     Chart newChart = event.getData();
-                    LOG.info("Create Chart with ID: {}", newChart.getChartId());
+                    LOG.info("Update Chart with ID: {}", newChart.getChartId());
                     chartService.updateChart(newChart).block();
                     break;
 
