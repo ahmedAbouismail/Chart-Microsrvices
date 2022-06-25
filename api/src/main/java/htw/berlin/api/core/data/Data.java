@@ -1,15 +1,15 @@
 package htw.berlin.api.core.data;
 
-import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.Date;
 
 public class Data {
     private int chartId;
     private int dataId;
     private String studentId;
     private Collection<Transcript> transcripts;
-    private ZonedDateTime createdAt;
-    private ZonedDateTime lastUpdate;
+    private Date createdAt;
+    private Date lastUpdate;
     private String serviceAddress;
 
     public Data() {
@@ -22,7 +22,7 @@ public class Data {
         serviceAddress = null;
     }
 
-    public Data(int chartId, int dataId, String studentId, Collection<Transcript> transcripts, ZonedDateTime createdAt, ZonedDateTime lastUpdate,String serviceAddress) {
+    public Data(int chartId, int dataId, String studentId, Collection<Transcript> transcripts, Date createdAt, Date lastUpdate,String serviceAddress) {
         this.chartId = chartId;
         this.dataId = dataId;
         this.studentId = studentId;
@@ -64,19 +64,19 @@ public class Data {
         this.transcripts = transcripts;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public ZonedDateTime getLastUpdate() {
+    public Date getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(ZonedDateTime lastUpdate) {
+    public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

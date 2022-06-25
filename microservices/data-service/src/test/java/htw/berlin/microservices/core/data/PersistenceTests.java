@@ -1,17 +1,11 @@
 package htw.berlin.microservices.core.data;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import htw.berlin.api.core.data.Data;
-import htw.berlin.api.core.data.ModuleGrade;
-import htw.berlin.api.core.data.Transcript;
 import htw.berlin.microservices.core.data.persistence.DataEntity;
 import htw.berlin.microservices.core.data.persistence.IDataRepository;
 import htw.berlin.microservices.core.data.persistence.ModuleGradeObj;

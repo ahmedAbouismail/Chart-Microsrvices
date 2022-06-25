@@ -4,8 +4,8 @@ package htw.berlin.microservices.composite.chart.services;
 import static java.util.logging.Level.FINE;
 
 import java.net.URL;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,8 +130,8 @@ public class ChartCompositeServiceImpl implements IChartCompositeService {
         String studentId = chart.getStudentId();
         ChartLabel chartLabel = chart.getChartLabel();
         ChartType chartType = chart.getChartType();
-        ZonedDateTime createdAt = chart.getCreatedAt();
-        ZonedDateTime lastUpdate = chart.getLastUpdate();
+        Date createdAt = chart.getCreatedAt();
+        Date lastUpdate = chart.getLastUpdate();
 
         DataSummery dataSummery = (data == null) ? null : new DataSummery(data.getDataId(), data.getStudentId(), data.getTranscripts(), data.getCreatedAt(), data.getLastUpdate());
 

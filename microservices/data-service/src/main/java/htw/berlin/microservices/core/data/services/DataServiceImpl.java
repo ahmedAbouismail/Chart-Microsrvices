@@ -15,9 +15,10 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static java.util.logging.Level.FINE;
 
@@ -121,7 +122,8 @@ public class  DataServiceImpl implements IDataService {
 
          Mono<DataEntity> updatedEntity = dataRepository.findByChartId(body.getChartId())
         .switchIfEmpty(Mono.error(new NotFoundException("updateData: Can't find Data with data Id: " + body.getDataId())))
-        .map(foundEntity -> updateDataEntity(foundEntity, newEntity));
+        .map(foundEntity -> updateDataEntity(foundEntity, newEntity))
+        .map(foundEntity -> calculateCreditsTotal(calculateSemesterAverage(foundEntity)));
 
         Mono<Data> updatedData = dataRepository.save(updatedEntity.block())
                 .log(LOG.getName(), FINE)
@@ -136,8 +138,8 @@ public class  DataServiceImpl implements IDataService {
     private DataEntity updateDataEntity(DataEntity foundEntity, DataEntity newEntity) {
         if (foundEntity != null && newEntity != null){
             foundEntity.setTranscripts(newEntity.getTranscripts());
+            foundEntity.setLastUpdate(Date.from(ZonedDateTime.now().toInstant()));
         }
-
         return foundEntity;
     }
 

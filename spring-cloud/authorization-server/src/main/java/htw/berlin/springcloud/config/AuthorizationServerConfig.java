@@ -69,6 +69,7 @@ public class AuthorizationServerConfig {
            .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
            .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
            .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+           .redirectUri("http://127.0.0.1:8080/login/oauth2/code/backend-client-oidc")
            .redirectUri("https://my.redirect.uri")
            .redirectUri("https://localhost:8443/webjars/swagger-ui/oauth2-redirect.html")
            .scope(OidcScopes.OPENID)
@@ -106,42 +107,5 @@ public class AuthorizationServerConfig {
     public ProviderSettings providerSettings() {
         return new ProviderSettings().issuer("http://auth-server:9999");
     }
-
-//    @Bean
-//    public ProviderSettings providerSettings() {
-//        return new ProviderSettings().issuer("http://auth-server:9999");
-//    }
 }
 
-//   LOG.info("register OAUth client allowing all grant flows...");
-//           RegisteredClient writerClient = RegisteredClient.withId(UUID.randomUUID().toString())
-//           .clientId("writer")
-//           .clientSecret("secret")
-//           .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
-//           .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-//           .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-//           .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-//           .redirectUri("https://my.redirect.uri")
-//           .redirectUri("https://localhost:8443/webjars/swagger-ui/oauth2-redirect.html")
-//           .scope(OidcScopes.OPENID)
-//           .scope("chart:read")
-//           .scope("chart:write")
-//           .clientSettings(clientSettings -> clientSettings.requireUserConsent(true))
-//           .tokenSettings(ts -> ts.accessTokenTimeToLive(Duration.ofHours(1)))
-//           .build();
-//
-//           RegisteredClient readerClient = RegisteredClient.withId(UUID.randomUUID().toString())
-//           .clientId("reader")
-//           .clientSecret("secret")
-//           .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
-//           .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-//           .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-//           .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-//           .redirectUri("https://my.redirect.uri")
-//           .redirectUri("https://localhost:8443/webjars/swagger-ui/oauth2-redirect.html")
-//           .scope(OidcScopes.OPENID)
-//           .scope("chart:read")
-//           .clientSettings(clientSettings -> clientSettings.requireUserConsent(true))
-//           .tokenSettings(ts -> ts.accessTokenTimeToLive(Duration.ofHours(1)))
-//           .build();
-//           return new InMemoryRegisteredClientRepository(writerClient, readerClient);

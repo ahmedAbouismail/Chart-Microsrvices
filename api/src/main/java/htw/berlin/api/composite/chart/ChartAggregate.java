@@ -1,9 +1,11 @@
 package htw.berlin.api.composite.chart;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
 import htw.berlin.api.core.chart.ChartLabel;
 import htw.berlin.api.core.chart.ChartType;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
 
 public class ChartAggregate {
 
@@ -11,8 +13,8 @@ public class ChartAggregate {
     private final String studentId;
     private final ChartLabel chartLabel;
     private final ChartType chartType;
-    private final ZonedDateTime createdAt;
-    private final ZonedDateTime lastUpdate;
+    private final Date createdAt;
+    private final Date lastUpdate;
     private final DataSummery dataSummery;
     private final ServiceAddresses serviceAddresses;
 
@@ -29,7 +31,7 @@ public class ChartAggregate {
 
     }
 
-    public ChartAggregate(int chartId,String studentId, ChartLabel chartLabel, ChartType chartType, ZonedDateTime createdAt, ZonedDateTime lastUpdate, DataSummery dataSummery, ServiceAddresses serviceAddresses) {
+    public ChartAggregate(int chartId,String studentId, ChartLabel chartLabel, ChartType chartType, Date createdAt, Date lastUpdate, DataSummery dataSummery, ServiceAddresses serviceAddresses) {
         this.chartId = chartId;
         this.studentId = studentId;
         this.chartLabel = chartLabel;
@@ -56,11 +58,11 @@ public class ChartAggregate {
         return chartType;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public ZonedDateTime getLastUpdate() {
+    public Date getLastUpdate() {
         return lastUpdate;
     }
 

@@ -5,7 +5,8 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
+
 
 @Document(collection = "charts")
 public class ChartEntity {
@@ -25,14 +26,14 @@ public class ChartEntity {
 
     private ChartLabelObj chartLabelObj;
 
-    private ZonedDateTime createdAt;
+    private Date createdAt;
 
-    private ZonedDateTime lastUpdate;
+    private Date lastUpdate;
 
     public ChartEntity() {
     }
 
-    public ChartEntity(int chartId, String studentId, ChartTypeObj chartTypeObj, ChartLabelObj chartLabelObj, ZonedDateTime createdAt, ZonedDateTime lastUpdate) {
+    public ChartEntity(int chartId, String studentId, ChartTypeObj chartTypeObj, ChartLabelObj chartLabelObj, Date createdAt, Date lastUpdate) {
         this.chartId = chartId;
         this.studentId = studentId;
         this.chartTypeObj = chartTypeObj;
@@ -89,19 +90,19 @@ public class ChartEntity {
         this.chartLabelObj = chartLabelObj;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public ZonedDateTime getLastUpdate() {
+    public Date getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(ZonedDateTime lastUpdate) {
+    public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 }

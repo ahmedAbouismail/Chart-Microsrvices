@@ -29,7 +29,7 @@ public class MapperTests {
 
         transcripts.add(new Transcript("ss22", moduleGrades, 0, 0));
 
-        Data api = new Data(1, 2, "s0", transcripts, ZonedDateTime.now().minusDays(1), ZonedDateTime.now(), "sa");
+        Data api = new Data(1, 2, "s0", transcripts, null, null, "sa");
 
         DataEntity entity = mapper.apiToEntity(api);
 

@@ -1,15 +1,15 @@
 package htw.berlin.api.core.chart;
 
-import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.Date;
 
 public class Chart {
     private int chartId;
     private String studentId;
     private ChartLabel chartLabel;
     private ChartType chartType;
-    private ZonedDateTime createdAt;
-    private ZonedDateTime lastUpdate;
+    private Date createdAt;
+    private Date lastUpdate;
     private String serviceAddress;
 
 
@@ -23,7 +23,7 @@ public class Chart {
         serviceAddress = null;
     }
 
-    public Chart(int chartId, String studentId, ChartType chartType, ChartLabel chartLabel, ZonedDateTime createdAt, ZonedDateTime lastUpdate, String serviceAddress) {
+    public Chart(int chartId, String studentId, ChartType chartType, ChartLabel chartLabel, Date createdAt, Date lastUpdate, String serviceAddress) {
         this.chartId = chartId;
         this.studentId = studentId;
         this.chartLabel = chartLabel;
@@ -65,19 +65,19 @@ public class Chart {
         this.chartType = chartType;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public ZonedDateTime getLastUpdate() {
+    public Date getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(ZonedDateTime lastUpdate) {
+    public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

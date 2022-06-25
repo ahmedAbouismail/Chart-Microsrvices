@@ -2,16 +2,16 @@ package htw.berlin.api.composite.chart;
 
 import htw.berlin.api.core.data.Transcript;
 
-import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.Date;
 
 public class DataSummery {
 
     private final int dataId;
     private final String studentId;
     private final Collection<Transcript> transcripts;
-    private final ZonedDateTime createdAt;
-    private final ZonedDateTime lastUpdate;
+    private final Date createdAt;
+    private final Date lastUpdate;
 
     public DataSummery() {
         dataId = 0;
@@ -21,7 +21,7 @@ public class DataSummery {
         lastUpdate = null;
     }
 
-    public DataSummery(int dataId, String studentId, Collection<Transcript> transcripts, ZonedDateTime createdAt, ZonedDateTime lastUpdate) {
+    public DataSummery(int dataId, String studentId, Collection<Transcript> transcripts, Date createdAt, Date lastUpdate) {
         this.dataId = dataId;
         this.studentId = studentId;
         this.transcripts = transcripts;
@@ -43,11 +43,11 @@ public class DataSummery {
     }
 
 
-    public ZonedDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public ZonedDateTime getLastUpdate() {
+    public Date getLastUpdate() {
         return lastUpdate;
     }
 

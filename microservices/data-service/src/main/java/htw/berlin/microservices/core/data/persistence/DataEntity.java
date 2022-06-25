@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.Date;
 
 @Document(collection = "data")
 @CompoundIndex(name = "chart-data-id", unique = true, def = "{'chartId': 1, 'dataId': 1}")
@@ -25,14 +25,14 @@ public class DataEntity {
     private int dataId;
     private String studentId;
     private Collection<TranscriptObj> transcripts;
-    private ZonedDateTime createdAt;
-    private ZonedDateTime lastUpdate;
+    private Date createdAt;
+    private Date lastUpdate;
 
 
     public DataEntity() {
     }
 
-    public DataEntity(int dataId, int chartId,String studentId, Collection<TranscriptObj> transcripts, ZonedDateTime createdAt, ZonedDateTime lastUpdate) {
+    public DataEntity(int dataId, int chartId,String studentId, Collection<TranscriptObj> transcripts, Date createdAt, Date lastUpdate) {
         this.dataId = dataId;
         this.chartId = chartId;
         this.studentId = studentId;
@@ -89,19 +89,19 @@ public class DataEntity {
         this.transcripts = transcripts;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public ZonedDateTime getLastUpdate() {
+    public Date getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(ZonedDateTime lastUpdate) {
+    public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 
